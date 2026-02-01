@@ -9,11 +9,12 @@
     <?php 
         $errDiemToan = $errDiemLy = $errDiemHoa = $ketQua = '';
         $err = false;
-        $diemToan = $_POST['diemToan'];
-        $diemLy = $_POST['diemLy'];
-        $diemHoa = $_POST['diemHoa'];
+        $diemToan = (float)$_POST['diemToan'];
+        $diemLy = (float)$_POST['diemLy'];
+        $diemHoa = (float)$_POST['diemHoa'];
+
         if(isset($_POST['submit'])) {
-            if(!is_numeric($diemToan)) {
+            if(empty($diemToan)) {
                 $errDiemToan = 'vui lòng nhập điểm toán';
                 $err = true;
             } else if($diemToan < 0 || $diemToan > 10) {
@@ -21,7 +22,7 @@
                 $err = true;
             }
 
-            if(!is_numeric($diemLy)) {
+            if(empty($diemLy)) {
                 $errDiemLy = 'vui lòng nhập điểm lý';
                 $err = true;
             } else if($diemLy < 0 || $diemLy > 10) {
@@ -29,7 +30,7 @@
                 $err = true;
             }
 
-            if(!is_numeric($diemHoa)) {
+            if(empty($diemHoa)) {
                 $errDiemHoa = 'vui lòng nhập điểm hóa';
                 $err = true;
             } else if($diemHoa < 0 || $diemHoa > 10) {
@@ -49,11 +50,11 @@
     ?>
 
     <form action="" method="post">
-        <input type="number" name="diemToan" placeholder="nhập điểm toán"/>
+        <input type="text" name="diemToan" placeholder="nhập điểm toán"/>
         <p><?php echo $errDiemToan ?></p>
-        <input type="number" name="diemLy" placeholder="nhập điểm lý"/>
+        <input type="text" name="diemLy" placeholder="nhập điểm lý"/>
         <p><?php echo $errDiemLy ?></p>
-        <input type="number" name="diemHoa" placeholder="nhập điểm hóa"/>
+        <input type="text" name="diemHoa" placeholder="nhập điểm hóa"/>
         <p><?php echo $errDiemHoa ?></p>
         <button type="submit" name="submit">Submit</button>
     </form>
