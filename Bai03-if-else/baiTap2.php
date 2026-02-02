@@ -14,7 +14,7 @@
         $diemHoa = (float)$_POST['diemHoa'];
 
         if(isset($_POST['submit'])) {
-            if(empty($diemToan)) {
+            if($_POST['diemToan'] === '') {
                 $errDiemToan = 'vui lòng nhập điểm toán';
                 $err = true;
             } else if($diemToan < 0 || $diemToan > 10) {
@@ -22,7 +22,7 @@
                 $err = true;
             }
 
-            if(empty($diemLy)) {
+            if($_POST['diemLy'] === '') {
                 $errDiemLy = 'vui lòng nhập điểm lý';
                 $err = true;
             } else if($diemLy < 0 || $diemLy > 10) {
@@ -30,7 +30,7 @@
                 $err = true;
             }
 
-            if(empty($diemHoa)) {
+            if($_POST['diemHoa'] === '') {
                 $errDiemHoa = 'vui lòng nhập điểm hóa';
                 $err = true;
             } else if($diemHoa < 0 || $diemHoa > 10) {
