@@ -10,8 +10,8 @@
         $number = 40;
 
         function kiem_tra_chia_het_40($number){
-            for($i = 0; $i <= 1000; $i = $i + $number) {
-                if($i >= 1)
+            for($i = 1; $i <= 1000; $i++) {
+                if($i % $number == 0)
                     echo $i . '<br>';
             }
         }
