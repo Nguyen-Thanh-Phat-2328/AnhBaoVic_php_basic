@@ -15,10 +15,10 @@
     </head>
     <body>
         <?php
-            $name = 'Nguyễn Thành Phát';
+            $name = 'Nguyen thanh phat';
             // echo $name;
-            for($i = 0; $i < mb_strlen($name, 'UTF-8'); $i++){
-                echo mb_substr($name, $i, 1, 'UTF-8') . '<br>';
+            for($i = 0; $i < strlen($name); $i++){
+                echo $name[$i] . '<br>';
             }
         ?>
     </body>
