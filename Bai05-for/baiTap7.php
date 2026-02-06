@@ -78,6 +78,22 @@
             }
         ?>
     </table>
+    <p><br>cách 3 dùng foreach<br></p>
+    <table>
+        <?php
+            foreach($students as $key => $value){
+                ?>
+
+                    <tr>
+                        <td><?php echo $value['name'] ?></td>
+                        <td><?php echo $value['email'] ?></td>
+                        <td><?php echo $value['age'] ?></td>
+                    </tr>
+
+                <?php
+            }
+        ?>
+    </table>
 </body>
 
 </html>
