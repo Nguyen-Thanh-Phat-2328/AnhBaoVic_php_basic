@@ -7,76 +7,34 @@
 </head>
 <body>
     <?php
-    $students = array(
-            array(
-                'name'  => 'Nguyễn Văn Cường 1',
-                'email' => 'thehalfheart1@gmail.com',
-                'age'   => '29'
-            ),
-            array(
-                'name'  => 'Nguyễn Văn Cường 2',
-                'email' => 'thehalfheart2@gmail.com',
-                'age'   => '29'
-            ),
-            array(
-                'name'  => 'Nguyễn Văn Cường 3',
-                'email' => 'thehalfheart3@gmail.com',
-                'age'   => '29'
-            ),
-            array(
-                'name'  => 'Nguyễn Văn Cường 4',
-                'email' => 'thehalfheart4@gmail.com',
-                'age'   => '29'
-            ),
-            array(
-                'name'  => 'Nguyễn Văn Cường 5',
-                'email' => 'thehalfheart5@gmail.com',
-                'age'   => '29'
-            ),
-            array(
-                'name'  => 'Nguyễn Văn Cường 6',
-                'email' => 'thehalfheart6@gmail.com',
-                'age'   => '29'
-            )
-        );
+        if(isset($_POST['submit'])) {
+            if(!empty($_FILES['avatar']['name'])) {
+                if($_FILES['avatar']['error'] > 0) {
+                    echo 'File upload bị lỗi';
+                } else {
+                    if($_FILES['avatar']['size'] >= 1024 * 1024) {
+                        echo 'file vượt quá kích thước 1mb';
+                    } else {
+                        $listNameImage = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG'];
+                        $explodeFileName = explode('.', $_FILES['avatar']['name']);
+                        $exFile = $explodeFileName[count($explodeFileName) - 1];
+
+                        if(!in_array($exFile, $listNameImage)) {
+                            echo 'không phải file ảnh';
+                        } else {
+                            move_uploaded_file($_FILES['avatar']['tmp_name'], './upload/' . $_FILES['avatar']['name']);
+                            echo 'upload thành công';
+                        }
+                    }
+                }
+            } else {
+                echo 'Chưa chọn file';
+            }
+        }
     ?>
-
-    <style>
-        table, tr, td {
-            border: 1px solid #000;
-        }
-
-        td{
-            padding: 5px;
-        }
-    </style>
-
-    <table>
-        <?php
-            for($i = 0; $i < count($students); $i++) {
-                ?>
-                <tr>
-                    <td><?php echo $students[$i]['name'] ?></td>
-                    <td><?php echo $students[$i]['email'] ?></td>
-                    <td><?php echo $students[$i]['age'] ?></td>
-                </tr>
-                <?php
-            }
-        ?>
-    </table>
-    <table>
-        <?php
-            foreach($students as $key => $value) {
-                ?>
-                <tr>
-                    <td><?php echo $value['name'] ?></td>
-                    <td><?php echo $value['email'] ?></td>
-                    <td><?php echo $value['age'] ?></td>
-                </tr>
-                <?php
-            }
-        ?>
-    </table>
-    
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar">
+        <button name="submit">button</button>
+    </form>
 </body>
 </html>
