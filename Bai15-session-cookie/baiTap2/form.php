@@ -3,11 +3,6 @@
 
     $messageCity = $messageEmail = $messagePass = '';
     $err = false;
-    if(isset($_SESSION['users'])) {
-        $users = $_SESSION['users'];
-    } else {
-        $users = [];
-    }
 
     if(isset($_POST['submit'])) {
         if(empty($_POST['email'])) {
@@ -31,9 +26,8 @@
                 'pass' => $_POST['pass'],
                 'city' => $_POST['city']
             ];
-            array_push($users, $user);
-            $_SESSION['users'] = $users;
-            // print_r($users);
+            $_SESSION['users'][] = $user;
+            // print_r($_SESSION['users']);
         }
     }
 
@@ -64,6 +58,12 @@
             <th>City</th>
         </tr>
         <?php
+            if(isset($_SESSION['users'])) {
+                $users = $_SESSION['users'];
+            } else {
+                $users = [];
+            }
+
             foreach($users as $key => $value) {
                 ?>
                     <tr>
